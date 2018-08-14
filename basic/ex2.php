@@ -6,13 +6,11 @@
  * Time: PM 3:28
  */
 
-$hamberger = 4.95;
+$hamburger = 4.95;
 $chocolate = 1.95;
 $cola = 0.85;
 $tariff = 7.5;
 $tip = 0.16;
 
-$result = (($hamberger + $chocolate + $cola)*0.75)*0.16;
+$result = (($hamburger + $chocolate + $cola)*0.75)*0.16;
 echo $result;
-
-?>

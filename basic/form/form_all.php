@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     show_form();
 }
 
-function show_form($errors = array()){
+function show_form($errors = []){
     $defaults = array('delivery' => 'yes',
                     'size' => 'medium'
     );
@@ -90,7 +90,10 @@ function validate_form(){
     }
 
     //delivery 가 선택됐으면 comments에 내용이 있어야 한다.
-    $input['delivery'] = $POST['delivery'] ?? 'no';
+    $test = $_POST['delivery'];
+    print('$test ::: '.$test);
+    $input['delivery'] = $_POST['delivery'] ?? 'no';
+    print('delivery ::: '.$input['delivery']);
     $input['comments'] = trim($_POST['comments'] ?? '');
     if(($input['delivery'] == 'yes') && (! strlen($input['comments']))){
         $errors[] = '배달 주소를 입력해주세요.';
@@ -104,7 +107,9 @@ function process_form($input){
     $sweet = $GLOBALS['sweets'][$input['sweet']];
     $main_dish_1 = $GLOBALS['main_dishes'][$input['main_dish'][0]];
     $main_dish_2 = $GLOBALS['main_dishes'][$input['main_dish'][1]];
-    if(isset($input['delivery']) && (input['delivery'] == 'yes')){
+
+    print($input['delivery']);
+    if(isset($input['delivery']) && ($input['delivery'] == 'yes')){
         $delivery = '배달';
     }else{
         $delivery = '매장 방문';
@@ -112,9 +117,10 @@ function process_form($input){
     //주문 메시지 텍스트 생성
     $message=<<<_ORDER_
         주문이 완료되었습니다, {$input['name']}님
-        $sweet({$input['size']}), $main_dish_1, $main_dish_2를 주문하셨습니다.
-        배달 여부 : $delivery
+        $sweet({$input['size']}), $main_dish_1, $main_dish_2 를 주문하셨습니다.
+        배달 여부 : $delivery ,
 _ORDER_;
+    $message.=trim($input['comment']);
     if (strlen(trim($input['comment']))){
         $message .= '남기신 메모'.$input['comment'];
     }

@@ -15,7 +15,6 @@ class FormHelper{
             $this->values = $_POST;
         }else{
             $this -> values = $values;
-            print_r($this);
         }
     }
 
@@ -23,6 +22,7 @@ class FormHelper{
         $attributes['type'] = $type;
         if(($type == 'radio') || ($type == 'checkbox')){
             if($this -> isOptionSelected($attributes['name'] ?? null, $attributes['value'] ?? null)){
+                print('print : '.$attributes['value']);
                 $attributes['checked'] = true;
             }
         }
@@ -34,18 +34,18 @@ class FormHelper{
         print('value attr : '.$options);
         $multiple = $attributes['multiple'] ?? false;
         return
-            $this -> start('select'. $attributes, $multiple).
+            $this -> start('select', $attributes, $multiple).
             $this -> options($attributes['name'] ?? null, $options).
             $this -> end('select');
     }
 
 
     public function textarea($attributes = array()){
-        $name = $attributes['name'] ?? null;
-        $value = $this->values['$name'] ?? '';
-        return $this->start('textarea', $attributes).
-            htmlentities($value).
-            $this->end('textarea');
+        $name = $attributes['name']??null;
+        $value = $this->values[$name] ?? '';
+        print($values[$name]);
+        return
+            $this->start('textarea', $attributes).$value.$this->end('textarea');
     }
 
     public function tag($tag, $attributes = array(), $isMultiple = false){
@@ -55,16 +55,13 @@ class FormHelper{
     public function start($tag, $attributes = array(), $isMultiple = false){
         // <select>와 <textarea>태그는 value 속성이 없다.
         $valueAttribute = (!(($tag == 'select') || ($tag == 'textarea')));
-        print("attr : ".$attributes);
-        print("multi : ".$isMultiple);
-        print("value : ".$valueAttribute);
         $attrs = $this->attributes($attributes, $isMultiple, $valueAttribute);
 
         return "<$tag $attrs>";
     }
 
     public function end($tag){
-        return "</tag>";
+        return "</$tag>";
     }
 
 
@@ -76,7 +73,7 @@ class FormHelper{
         if($valueAttribute && isset($attributes['name']) && array_key_exists($attributes['name'], $this->values)){
             $attributes['value'] = $this->values[$attributes['name']];
         }
-//        print_r($attributes);
+        //print_r($attributes);
         foreach($attributes as $k => $v){
             //$v가 true면 값을 갖지 않는 속성이므로 속성명만 추가한다.
             if(is_bool($v)){

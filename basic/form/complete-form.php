@@ -6,8 +6,6 @@
  * Time: PM 2:13
  */
 
-
-
 ?>
 
 
@@ -30,27 +28,27 @@
         <tr>
             <td>크기:</td>
             <td>
-                <?= $form -> input('radio', ['name' => 'size', 'value'=>'small'])?>소<br/>
-                <?= $form -> input('radio', ['name' => 'size', 'value'=>'medium'])?>중<br/>
-                <?= $form -> input('radio', ['name' => 'size', 'value'=>'large'])?>대<br/>
+                <?= $form -> input('radio', ['name' => 'size', 'value'=>'small']) ?>소<br/>
+                <?= $form -> input('radio', ['name' => 'size', 'value'=>'medium']) ?>중<br/>
+                <?= $form -> input('radio', ['name' => 'size', 'value'=>'large']) ?>대<br/>
             </td>
         </tr>
 
         <tr>
             <td>디저트를 선택해주세요:</td>
-            <td><?= $form->select($GLOBALS['sweets'], ['name'=>'sweet'])?></td>
+            <td><?= $form->select($GLOBALS['sweets'], ['name'=>'sweet']) ?></td>
         </tr>
         <tr>
             <td>주 메뉴를 두가지 선택해주세요:</td>
-            <td><?= $form->select($GLOBALS['main_dishes'],['name'=>'main_dish', 'multiple'=>'true'])?></td>
+            <td><?= $form->select($GLOBALS['main_dishes'],['name'=>'main_dish', 'multiple'=>true]) ?></td>
         </tr>
         <tr>
             <td>배달 주문이신가요?</td>
-            <td><?= $form->input('checkbox',['name'=>'delivery', 'value'=>'yes'])?>네</td>
+            <td><?= $form->input('checkbox',['name'=>'delivery', 'value'=>'yes']) ?>네</td>
         </tr>
         <tr>
-            <td>전달하실 내용이 있으시면 메모를 남겨주세요.<br>배달 주문이실 경우에는 주소를 남겨주세요.</td>
-            <td><?= $form->textarea(['name' => 'comments'])?></td>
+            <td>전달하실 내용이 ? 메모를 남겨주세요.<br>배달 주문이실 경우에는 주소를 남겨주세요.</td>
+            <td><?= $form->textarea(['name'=>'comments']) ?></td>
         </tr>
         <tr>
             <td colspan="2" align="center">
@@ -59,3 +57,19 @@
         </tr>
     </table>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
