@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //validate_form이 오류메시지를 반환하면 show_form()로 전달
     list($errors, $input) = validate_form();
     if($errors){
-        show_form($errors);
+        show_form();
     }else{
         //제출 데이터가 검증을 통과하면 처리한다.
         process_form($input);

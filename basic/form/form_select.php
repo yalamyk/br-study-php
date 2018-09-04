@@ -19,12 +19,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     list($form_errors, $input) = validate_form(); //list의 구조로 validate_form의 반환값을 변환함.
 
     if($form_errors){
-        show_form($form_errors);
+        show_form();
     }else{
         process_form($input);
     }
 }else{
-    show_form(null);
+    show_form();
 }
 
 //폼 제출시 수행

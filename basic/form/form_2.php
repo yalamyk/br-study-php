@@ -10,12 +10,12 @@
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 //    print strlen($_POST['my_name']);
     if($form_errors = validate_form()){
-        show_form($form_errors);
+        show_form();
     }else{
         process_form();
     }
 }else{
-    show_form(null);
+    show_form();
 }
 
 //폼 제출시 수행
